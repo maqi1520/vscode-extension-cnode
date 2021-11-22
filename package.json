@@ -1,0 +1,91 @@
+{
+  "name": "CNODE",
+  "displayName": "CNODE",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "maqi1520",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maqi1520/vscode-fanyi.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.62.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onView:vs-sidebar-view"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vs-sidebar-view",
+          "title": "CNODE 社区",
+          "icon": "media/cnode_icon_64.png"
+        }
+      ]
+    },
+    "views": {
+      "vs-sidebar-view": [
+        {
+          "type": "webview",
+          "id": "vs-sidebar-view",
+          "name": "Topic 列表",
+          "icon": "media/cnode_icon_64.png",
+          "contextualTitle": "Topic 列表"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "webview.helloWorld",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "build:view": "webpack --config webpack.view.config.js",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p -w . --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.4.1",
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/react": "^17.0.35",
+    "@types/react-dom": "^17.0.11",
+    "@types/vscode": "^1.62.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "@vscode/test-electron": "^1.6.2",
+    "autoprefixer": "^10.4.0",
+    "classnames": "^2.3.1",
+    "css-loader": "^6.5.1",
+    "eslint": "^7.32.0",
+    "glob": "^7.1.7",
+    "mini-css-extract-plugin": "^2.4.5",
+    "mocha": "^9.1.1",
+    "postcss-loader": "^6.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "tailwindcss": "^2.2.19",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.3",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {}
+}
