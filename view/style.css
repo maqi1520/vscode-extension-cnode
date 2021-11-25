@@ -9,3 +9,6 @@ html {
 .markdown-preview {
   @apply prose prose-lg max-w-full bg-white p-20;
 }
+.prettyprint {
+  background: #2d2d2d;
+}

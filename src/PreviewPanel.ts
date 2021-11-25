@@ -40,7 +40,10 @@ export class PreviewPanel {
         enableScripts: true,
 
         // 限制 从 media 文件夹加载资源
-        localResourceRoots: [vscode.Uri.joinPath(extensionUri, "build")],
+        localResourceRoots: [
+          vscode.Uri.joinPath(extensionUri, "build"),
+          vscode.Uri.joinPath(extensionUri, "media"),
+        ],
       }
     );
 
@@ -121,6 +124,13 @@ export class PreviewPanel {
     const styleMainUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, "build", "main.css")
     );
+    const styleCodeUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "media", "prism-tomorrow.css")
+    );
+
+    const scriptUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "media", "prism.js")
+    );
 
     // // Use a nonce  只允许特定脚本
     const nonce = getNonce();
@@ -141,6 +151,7 @@ export class PreviewPanel {
         <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${styleMainUri}" rel="stylesheet">
+        <link href="${styleCodeUri}" rel="stylesheet">
         <script nonce="${nonce}">
         setTimeout(()=>{
           window.scrollTo(0,0)
@@ -152,6 +163,7 @@ export class PreviewPanel {
         <h1>${this._topic.title}</h1>
         <div>${content}</div>
         </div>
+        <script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;
   }
