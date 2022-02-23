@@ -6,7 +6,7 @@
   "publisher": "maqi1520",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maqi1520/vscode-fanyi.git"
+    "url": "https://github.com/maqi1520/vscode-extension-cnode.git"
   },
   "license": "MIT",
   "engines": {
